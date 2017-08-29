@@ -30,8 +30,8 @@ class Seed():
             print('key {} and value {}'.format(pos.abbr,pos.partname))
 
     def doStuffs(self):
-        #self.seedNow()
-        self.showNow()
+        self.seedNow()
+        #self.showNow()
 
 
 

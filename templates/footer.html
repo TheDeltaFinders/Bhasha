@@ -1,36 +1,32 @@
 {% load staticfiles %}
 {%block footer %}
-<div class="footer-wrapper">
-                <footer class="footer footer-black footer-big">
-        <div class="container">
-                            <div class="content">
-                    <div class="row">
-                        <div class="col-md-12">
-                                                            <div class="col-md-4">
-                                    <div id="search-2" class="widget"><form role="search" method="get" class="search-form" action="http://pgautam.com.np/">
-                <label>
-                    <span class="screen-reader-text">Search for:</span>
-                    <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
-                </label>
-                <input type="submit" class="search-submit" value="Search" />
-            </form></div>                                </div>
-                                                                                                            </div>
-                    </div>
-                </div>
-                <hr/>
-                <ul class="footer-menu pull-left"><li class="page_item page-item-378"><a href="http://pgautam.com.np/downloads/">Downloads</a></li>
-<li class="page_item page-item-329 page_item_has_children"><a href="http://pgautam.com.np/programming/">Programming</a></li>
-<li class="page_item page-item-542 page_item_has_children"><a href="http://pgautam.com.np/studies/">Studies</a></li>
-<li class="page_item page-item-53 page_item_has_children"><a href="http://pgautam.com.np/maths/">Maths</a></li>
-<li class="page_item page-item-22 page_item_has_children"><a href="http://pgautam.com.np/articles/">Articles</a></li>
-<li class="page_item page-item-58"><a href="http://pgautam.com.np/nepal/">Nepal</a></li>
-<li class="page_item page-item-17 page_item_has_children"><a href="http://pgautam.com.np/ioe/">IOE</a></li>
-<li class="page_item page-item-70"><a href="http://pgautam.com.np/contact-me/">Contact Me</a></li>
-</ul>
-                            <div class="copyright pull-right">
-                    <a href="https://themeisle.com/themes/hestia/" target="_blank" rel="nofollow">Hestia</a> | Powered by <a href="http://wordpress.org" rel="nofollow">WordPress</a>                </div>
-                    </div>
-    </footer>
-</div>
-
+<footer class="page-footer blue accent-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Prakash Gautam</h5>
+          <p class="grey-text text-lighten-4">From <strong>The Delta Finders.</strong> </p>
+          <p>I can't just lie there and pass time, there is
+             something in my mind. I try to write,  I write 
+             in my mind and throw it there. This is  how it
+             has been going
+          </p>
+        </div>
+       <div class="col l6 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+              <li><a class="white-text" href="http://github.com/pranphy/"><img src="{% static 'images/github-icon.png' %}" style="height:23px; width:23px" />Github</a></li>
+              <li><a class="white-text" href="http://plus.google.com/pranphy/"><i class="material-icons left">person_pin</i>Google+</a></li>
+              <li><a class="white-text" href="http://twitter.com/pranphy"><i class="material-icons left">person_pin</i>Twitter</a></li>
+              <li><a class="white-text" href="http://fb.com/pranphy"><img src="{% static 'images/facebook-icon.png' %}" style="height:23px; width:23px" />Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container text-center">
+      A proud member of<a class="orange-text text-lighten-3" href="http://github.com/TheDeltaFinders/">The Delta Finders</a>
+      </div>
+    </div>
+  </footer>
 {% endblock footer %}

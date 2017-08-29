@@ -24,6 +24,7 @@ import django.views.defaults
 
 urlpatterns = [
     url(r'^kosh/',include('kosh.urls', namespace='kosh')),
+    url(r'^',include('kosh.urls', namespace='kosh')),
     url(r'^admin/', include(admin.site.urls)),
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 

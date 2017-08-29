@@ -44,3 +44,12 @@ class SubWord(Model):
 
     def __str__ (self):
         return self.subword
+
+class Comment(models.Model):
+    commenter = models.CharField(max_length=40)
+    comment = models.TextField()
+    postdate = models.DateTimeField(auto_now_add=True)
+    word = models.ForeignKey('BaseWord')
+
+    def __str__(self):
+        return self.commenter+ ' on '+ self.blogpost.title

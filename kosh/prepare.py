@@ -2,17 +2,18 @@
 
 import re
 
-
-from .mapping import Mapping as mpg
+from .processor.mapping import Mapping as mpg
 from .processor.prcmap import PrcMap as Prm
 
 
 class Sabdakosh():
     def __init__(self):
+        self.unirex = Prm.getPreRex()
         self.prerex = mpg.getPreRex()
         self.postrex = mpg.getRexArray()
         self.rawunifile= './res/Chha.txt'
         self.unifile = './res/ChhaPr.txt'
+        self.sepfile = './res/ChhaSep.txt'
         #self.outfile = './res/Out.txt'
         #self.infile  = './res/Page.txt'
         self.asciifile= './res/ChhaASCII.txt'
@@ -44,6 +45,7 @@ class Sabdakosh():
                         except KeyError:
                             cnt += char
                 
+                print('doing a post process')
                 cnt = self.rexSub(cnt,self.postrex)
                 ofl.write(cnt)
 
@@ -52,7 +54,7 @@ class Sabdakosh():
         with open(self.rawunifile,'r') as inf:
             with open(self.unifile,'w') as otf:
                 wholeFile = inf.read()
-                for rex in self.prerex:
+                for rex in self.unirex:
                     wholeFile = re.sub(rex[0],rex[1],wholeFile)
 
                 otf.write(wholeFile)
@@ -61,6 +63,26 @@ class Sabdakosh():
     def doStuffs(self):
         self.asciiToUnicode()
         self.postProcess()
+        self.separateWords()
+
+    def separateWords(self):
+        seprex = r'[^\x00-\x7F]*[/~]*([^\x00-\x7F]+—)'
+        comprex = re.compile(seprex)
+        cnt = 0
+        lastPos = 0
+        curPos  = 0
+        with open(self.unifile,'r') as inf:
+            with open(self.sepfile,'w') as otf:
+                wholeFile = inf.read()
+                for m in comprex.finditer(wholeFile):
+                    lastPos = curPos
+                    curPos = m.start()
+                    otf.write('\n >> \n'+wholeFile[lastPos:curPos]+'\n << \n')
+                    otf.write(m.group()+'\n')
+                    print(cnt,' ',m.start(),' ' , m.group())
+                    cnt += 1
+
+
 
                             
 if __name__ == '__main__':

@@ -22,20 +22,34 @@ from .models import Meaning
 
 from .forms import CommentForm
 
-
-'''class BlogIndex(View):
+class KoshIndex(View):
     def get(self,request):
-        allposts = BlogPost.objects.all()
-        template = loader.get_template('blog/index.html')
-        Repeat = [1,2]
-
-        context   = {
-            'Repeat' : Repeat,
-            'allposts' : allposts,
+        #allposts = BlogPost.objects.all()
+        template = loader.get_template('kosh/index.html')
+        allbwords = BaseWord.objects.all()
+        allswords = SubWord.objects.all()
+        allwords = [word for word in allbwords] + [word for word in allswords]
+        print('allwords is ')
+        print(allwords)
+        context = {
+            'allwords':allwords
         }
         return HttpResponse(template.render(context,request))
 
-class BlogDetail(View):
+
+class WordMeaning(View):
+    def get(self,request,pslug):
+        template = loader.get_template('kosh/meaning.html')
+        word = BaseWord.objects.filter(word=pslug)
+        form = CommentForm()
+        context = {
+            'word':word,
+            'form':form
+        }
+        
+        return HttpResponse(template.render(context,request))
+
+'''class BlogDetail(View):
     def get(self,request,pslug):
         currentpost = get_object_or_404(BlogPost,slug=pslug) 
         comments = Comment.objects.filter(blogpost=currentpost)
@@ -60,11 +74,11 @@ class BlogDetail(View):
         )
         CommentObject.save()
         return HttpResponseRedirect('/blog/detail/'+pslug)
-
+'''
     
 class BlogDownload(View):
     def get(self,request):
-        template = loader.get_template('blog/download.html')
+        template = loader.get_template('kosh/download.html')
         context = {}
         return HttpResponse(template.render(context,request))
 
@@ -73,6 +87,3 @@ def handler404(request):
     response.status_code = 404
     return response
 
-
-'''
-#Comment

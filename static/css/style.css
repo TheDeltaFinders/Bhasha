@@ -1,0 +1,109 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+@font-face {
+  font-family: 'Gentium Served';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../font/general/Gentium Regular.ttf');
+  src: local('Gentium Regular')
+  format('ttf');
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.body{
+    font-size: 10;
+}
+html{
+    font-size: 12px;
+}
+
+code {
+    padding: 0px;
+    padding-left:3px;
+    padding-right: 3px;
+    font-family: 'consolas';
+}
+
+.dropdown-content {
+    margin: 15px;
+}
+
+.pr-menu-back {
+    height:240px;
+    background: url('../images/material-back-teal.png');
+    margin: 0px;
+    padding: 0px;
+}
+
+.pr-menu-back-empty{
+    height: 150px;
+}
+.pr-menu-close-button a:hover{
+    text-decoration-color: red;
+}
+.pr-slogan-rigor{
+    text-align: center;
+    margin:0px;
+}
+.pr-container{
+    padding: 0px;
+        padding-left: 45px;
+        padding-right: 45px;
+}
+
+.body{
+    font-family: 'Gentium Served';
+}
+.pr-blog-content, .pr-word-meaning {
+    font-family: 'Gentium Served' ;
+}
+
+blockquote{
+    background: rgba(124, 171, 231, 0.09);
+    border-left: 5px solid rgba(73, 27, 255, 0.8);
+    padding: 10px;
+    padding-left: 20px
+}
+
+nav ul a {
+  transition: transparent 0.025s;
+}
+
+.side-nav a{
+  height: 35px;
+  line-height: 35px;
+}
+.side-nav li{
+  padding-right: 0px;
+  padding-left: 5px;
+}
+
+.side-nav li:hover{
+  background: gray;
+}
+nav i.material-icons{
+  height: inherit;
+  line-height: inherit;
+}
+
+.side-nav li a:hover{
+  background: white;
+  text-decoration-color: green;
+  color: gray;
+}
+
+.row {
+  margin-bottom: 5px;
+}

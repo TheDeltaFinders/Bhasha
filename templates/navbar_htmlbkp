@@ -1,0 +1,44 @@
+{%load staticfiles %}
+{% block navbar %}
+<header class="header">
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="title-logo-wrapper">
+                    <a class="navbar-brand" href="http://pgautam.com.np/" title="Imagination"><p>Imagination</p></a>
+                </div>
+            </div>
+            <div id="main-navigation" class="collapse navbar-collapse">
+                <ul id="menu-articles" class="nav navbar-nav navbar-right">
+                    <li id="menu-item-5" class="menu-item"><a title="Home" href="http://pgautam.com.np/">Home</a></li>
+                        <li id="menu-item-4" class="menu-item dropdown">
+                            <a title="Programming" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Programming <span class="caret"></span></a>
+                            <ul role="menu" class=" dropdown-menu">
+                                <li class="menu-item"><a title="Breshenham Algorithm" href="#">Breshenham Algorithm</a></li>
+                                <li class="menu-item"><a title="Combination" href="#">Combination</a></li>
+                            </ul>
+                        </li>
+                    </li>
+                    <li class="menu-item dropdown"><a title="Articles" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Articles <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                            <li class="menu-item"><a title="Lunatic" href="#">Lunatic</a></li>
+                            <li class="menu-item"><a title="गुरु देवायः नमो नमः !" href="#">गुरु देवायः नमो नमः !</a></li>
+                            <li class="menu-item"><a title="म पनि देउता मान्छु" href="#">म पनि देउता मान्छु</a></li>
+                            <li class="menu-item"><a title="यात्री" href="#">यात्री</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item"><a title="Contact Me" href="#">Contact Me</a></li>
+                    <li class="menu-item"><a title="Downloads" href="#">Downloads</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{%endblock navbar%}
