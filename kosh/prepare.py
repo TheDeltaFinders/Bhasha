@@ -26,6 +26,16 @@ class Sabdakosh():
 
 
     def asciiToUnicode(self):
+        '''This function converts the ASCII Nepali characters to Unicode
+           since the ASCII for Nepali based on Priti font    is not used 
+           everywhere in the original dictionary  there are  going to be 
+           problems which we subsequently address and try to correct
+        '''
+        '''There are two parts of regular expression substution, the first
+           part one to one substitutes the Preeti ascii characters by  the
+           corresponding unicode character for Nepali. The post part tries
+           to correct the misplacement of certain characters in the mapping
+        '''
         dicmap = mpg.getMapping()
         rexarray = mpg.getRexArray()
         extmap = mpg.getExtraMap()
@@ -51,6 +61,12 @@ class Sabdakosh():
 
 
     def postProcess(self):
+        '''This  Post process part  tries to correct errors that are  seen
+           during manual inspection. I've added errors found by inspection
+           and tried to generalize them to include other such errors to do
+           the correction later. Also this part tries to remove the recur-
+           rent advertiesment from the downloader. Crazy right??
+        '''
         with open(self.rawunifile,'r') as inf:
             with open(self.unifile,'w') as otf:
                 wholeFile = inf.read()
