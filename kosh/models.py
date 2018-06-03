@@ -26,7 +26,7 @@ class Pos(Model):
 
 class Meaning(Model):
     meaning = TextField()
-    pos = ForeignKey('Pos')
+    pos = ForeignKey('Pos',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.meaning
@@ -38,7 +38,7 @@ class BaseWord(Model):
         return self.word + " : " 
 
 class SubWord(Model):
-    parentword = ForeignKey('BaseWord')
+    parentword = ForeignKey('BaseWord',on_delete=models.CASCADE)
     subword = CharField(max_length=100,unique=False)
     meaning = ManyToManyField('Meaning',blank=False)
 
@@ -49,7 +49,7 @@ class Comment(models.Model):
     commenter = models.CharField(max_length=40)
     comment = models.TextField()
     postdate = models.DateTimeField(auto_now_add=True)
-    word = models.ForeignKey('BaseWord')
+    word = models.ForeignKey('BaseWord',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.commenter+ ' on '+ self.blogpost.title
