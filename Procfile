@@ -1,1 +1,1 @@
-web: gunicorn nepali.wsgi --log-file -
+web: gunicorn bhasha.wsgi --log-file -

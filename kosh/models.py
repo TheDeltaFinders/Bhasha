@@ -1,51 +1,55 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# vim: ai ts=4 sts=4 et sw=4 ft=python
+
+# author : Prakash [प्रकाश]
+# date   : buried
+# update : 2019-09-06 16:41
+
 import datetime
 
-from django.db.models import Model
-from django.db.models import DateTimeField
-from django.db.models import CharField 
-from django.db.models import TextField 
-from django.db.models import SlugField 
-from django.db.models import DateTimeField
-from django.db.models import BooleanField 
-from django.db.models import ForeignKey
-from django.db.models import ManyToManyField
-from django.db import models
+from django.db import models 
 
 from django.utils import timezone
 
 
-class Pos(Model):
-    abbr = CharField(max_length=50,unique=True)
-    partname = CharField(max_length=50,unique=True)
-    create_date = DateTimeField(auto_now=True)
-    is_active = BooleanField() 
+class BaseModel(models.Model):
+    create_date = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField() 
+
+    class Meta:
+        abstract = True
+
+class Pos(BaseModel):
+    abbr = models.CharField(max_length=50,unique=True)
+    partname = models.CharField(max_length=50,unique=True)
 
     def __str__(self):
         return self.partname
 
 
-class Meaning(Model):
-    meaning = TextField()
-    pos = ForeignKey('Pos',on_delete=models.CASCADE)
+class Meaning(BaseModel):
+    meaning = models.TextField()
+    pos = models.ForeignKey('Pos',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.meaning
 
-class BaseWord(Model):
-    word = CharField(max_length=100,unique=True)
-    meaning = ManyToManyField('Meaning',blank=False)
+class BaseWord(BaseModel):
+    word = models.CharField(max_length=100,unique=True)
+    meaning = models.ManyToManyField('Meaning',blank=False)
     def __str__(self):
         return self.word + " : " 
 
-class SubWord(Model):
-    parentword = ForeignKey('BaseWord',on_delete=models.CASCADE)
-    subword = CharField(max_length=100,unique=False)
-    meaning = ManyToManyField('Meaning',blank=False)
+class SubWord(BaseModel):
+    parentword = models.ForeignKey('BaseWord',on_delete=models.CASCADE)
+    subword = models.CharField(max_length=100,unique=False)
+    meaning = models.ManyToManyField('Meaning',blank=False)
 
     def __str__ (self):
         return self.subword
 
-class Comment(models.Model):
+class Comment(BaseModel):
     commenter = models.CharField(max_length=40)
     comment = models.TextField()
     postdate = models.DateTimeField(auto_now_add=True)

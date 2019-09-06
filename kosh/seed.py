@@ -1,41 +1,34 @@
 #!/usr/bin/env python3
 
-#import os
+from peewee import *
 
-#os.environ.setdefault('DJANGO_SETTINGS_MODULE','nepali.settings')
-
-
-
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
-
-from .processor.indexmaper import IndexMaper as IdMap
-from .models import Pos 
-
-
+from database.constants import Constants as Cst
+from processor.indexmaper import IndexMaper as IdMap
+from database.pos import Pos 
+from database.basemodel import BaseModel
 
 class Seed():
     def __init__(self):
         self.idxmap = IdMap().getIndexMap()
+        db = Cst.DB
+        db.connect()
+        #db.create_tables([Pos])
 
     def seedNow(self):
         print('the index amp is ')
         print(self.idxmap)
         for k in self.idxmap:
-            curpos = Pos(partname = self.idxmap[k],abbr=k,is_active=True)
+            curpos = Pos(partname = self.idxmap[k],abbreviation=k)
             curpos.save()
 
     def showNow(self):
-        for pos in Pos.objects.all():
-            print('key {} and value {}'.format(pos.abbr,pos.partname))
-
-    def doStuffs(self):
-        self.seedNow()
-        #self.showNow()
+        for pos in Pos.select():
+            print('key {} and value {}'.format(pos.abbreviation,pos.partname))
 
 
 
 if __name__ == '__main__':
     a = Seed()
-    a.doStuffs()
+    #a.seedNow()
+    a.showNow()
 

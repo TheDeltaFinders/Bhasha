@@ -9,24 +9,75 @@ class Mapping():
         return mapdict
     
     def getExtraMap():
-        mapdict = {'®':'र','“':'ँ'}
+        mapdict = {
+            '®':'र',
+            '“':'ँ',
+            '':'ँ', # ord 147
+            '':'-', # ord 151
+            }
         return mapdict
     
     def getPreRex():
         rexary = [
-            [r'l[ ]+','l'],[r'[\n ]+{',r'{'],
-            [r' \] ',r'Σ'],
+            # Any number of spaces following Rhswo Ikar '' should be 
+            # descarded no matter what.
+            [r'l[ ]+','l'],
+            
+            # Any number of whitespaces or newlines should be descarded
+            # before the characther kri
+            [r'[\n ]+{',r'{'],
+            
+            
+            # Tyring to save these unique characers
+            # I guess now longer required now.
+            [r' \] ',r'Σ'], 
             [' \[ ',r'ί']
+            
         ]
         
         return rexary
     
     def getRexArray():
+        # After character by character subtution is made
+        # we still need to correct the misaligned characters
+        # in the word. These regular expression mapping, do the same.
+        # for example in preeti like font l character is 
         #
         rexary =[
-        [r"्ा", r""], [r"(त्र|त्त)([^उभप]+?)m", r"\1m\2"], [r"त्रm", r"क्र"], [r"त्तm", r"क्त"], [r"([^उभप]+?)m", r"m\1"], [r"उm", r"ऊ"], [r"भm", r"झ"], [r"पm", r"फ"], [r"इ{", r"ई"], [r"ि((.्)*[^्])", r"\1ि"], [r"(.[ािीुूृेैोौंःँ]*?){", r"{\1"], [r"((.्)*){", r"{\1"], [r"{", r"र्"], [r"([ाीुूृेैोौंःँ]+?)(्(.्)*[^्])", r"\2\1"], [r"्([ाीुूृेैोौंःँ]+?)((.्)*[^्])", r"्\2\1"], [r"([ंँ])([ािीुूृेैोौः]*)", r"\2\1"], [r"ँँ", r"ँ"], [r"ंं", r"ं"], [r"ेे", r"े"], [r"ैै", r"ै"], [r"ुु", r"ु"], [r"ूू", r"ू"], [r"^ः", r":"], [r"टृ", r"ट्ट"], [r"ेा", r"ाे"], [r"ैा", r"ाै"], [r"अाे", r"ओ"], [r"अाै", r"औ"], [r"अा", r"आ"], [r"एे", r"ऐ"], [r"ाे", r"ो"], [r"ाै", r"ौ"],[r'[\n ]+ो',r'ो'],[r'[\n ]+([ेौौाःँृं])',r'\1'],
-        [r'Σ',r' ] '],
-        [r'ί',' [ '],[r'०ृ',r'० ['],[r'¦ँ',r'ुँ']
+            [r"्ा", r""], 
+            [r"(त्र|त्त)([^उभप]+?)m", r"\1m\2"], 
+            [r"त्रm", r"क्र"], [r"त्तm", r"क्त"], 
+            [r"([^उभप]+?)m", r"m\1"], 
+            [r"उm", r"ऊ"], 
+            [r"भm", r"झ"], 
+            [r"पm", r"फ"], 
+            [r"इ{", r"ई"], 
+            [r"ि((.्)*[^्])", r"\1ि"], 
+            [r"(.[ािीुूृेैोौंःँ]*?){", r"{\1"], 
+            [r"((.्)*){", r"{\1"], 
+            [r"{", r"र्"], 
+            [r"([ाीुूृेैोौंःँ]+?)(्(.्)*[^्])", r"\2\1"], 
+            [r"्([ाीुूृेैोौंःँ]+?)((.्)*[^्])", r"्\2\1"], 
+            [r"([ंँ])([ािीुूृेैोौः]*)", r"\2\1"], 
+            [r"ँँ", r"ँ"], [r"ंं", r"ं"], 
+            [r"ेे", r"े"], 
+            [r"ैै", r"ै"], 
+            [r"ुु", r"ु"], 
+            [r"ूू", r"ू"], 
+            [r"^ः", r":"], 
+            [r"टृ", r"ट्ट"], 
+            [r"ेा", r"ाे"], 
+            [r"ैा", r"ाै"], 
+            [r"अाे", r"ओ"], 
+            [r"अाै", r"औ"], 
+            [r"अा", r"आ"], 
+            [r"एे", r"ऐ"], 
+            [r"ाे", r"ो"], 
+            [r"ाै", r"ौ"],
+            [r'[\n ]+ो',r'ो'],
+            [r'[\n ]+([ेौौाःँृं])',r'\1'],
+            [r'Σ',r' ] '],
+            [r'ί',' [ '],[r'०ृ',r'० ['],[r'¦ँ',r'ुँ']
         ]
         return rexary
         
